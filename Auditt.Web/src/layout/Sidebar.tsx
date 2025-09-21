@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useUserContext from '../shared/context/useUserContext';
 import { useState } from 'react';
 import { useAuth } from '../shared/context/useAuth';
+import { isAdmin, isAdminOrInterno } from '../shared/helpers/UserUtils';
 
 export const Sidebar = () => {
    const urlApi = import.meta.env.VITE_API_URL;
    const { user, setClient, setIsAuthenticated, setToken, setUser } = useUserContext();
    const { logout } = useAuth();
-   const isAdmin = user?.roleName === 'ADMIN';
+
    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
    const toggleMobileMenu = () => {
@@ -80,16 +81,18 @@ export const Sidebar = () => {
                <nav>
                   <ul className="space-y-1">
                      <MenuItem icon={faHouse} path='/' text='Inicio' />
-                     {isAdmin && (
+                     {isAdmin(user) && (
                         <>
                            <MenuItem icon={faUser} path='/Clients' text='Clientes' />
                            <MenuItem icon={faVial} path='/Guide' text='Instrumentos' />
                            <MenuItem icon={faCalendarWeek} path='/DataCuts' text='Cortes Trimestrales' />
                         </>
                      )}
-                     <MenuItem icon={faRulerVertical} path='/Assessments' text='Medición de Adherencia' />
+                     {isAdminOrInterno(user) && (
+                        <MenuItem icon={faRulerVertical} path='/Assessments' text='Medición de Adherencia' />
+                     )}
                      <MenuItem icon={faClipboardCheck} path='/Reports' text='Indicadores e informes' />
-                     {isAdmin && <MenuItem icon={faGear} path='/Settings' text='Configuraciones' />}
+                     {isAdmin(user) && <MenuItem icon={faGear} path='/Settings' text='Configuraciones' />}
                      <li
                         onClick={handleLogout}
                         className={`mt-1 cursor-pointer font-semibold text-gray-300 hover:bg-gray-700 px-4 py-2 flex items-center gap-2`}>

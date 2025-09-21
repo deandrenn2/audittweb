@@ -90,15 +90,27 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/Assessments',
-                element: <Assessments />,
+                element: (
+                    <ProtectedRoute requiredRole="ADMIN">
+                        <Assessments />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: 'Assessments/Create/:Id',
-                element: <AssessmentDetail />,
+                element: (
+                    <ProtectedRoute requiredRole="ADMIN">
+                        <AssessmentDetail />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: 'Assessments/Create',
-                element: <AssessmentDetail />,
+                element: (
+                    <ProtectedRoute requiredRole="ADMIN">
+                        <AssessmentDetail />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: '/Reports',

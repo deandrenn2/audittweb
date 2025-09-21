@@ -75,8 +75,9 @@ export const UserUpdate = ({ data }: { data: UsersResponseModel }) => {
                      onChange={handleChange}
                      className="w-full border border-gray-300 rounded px-3 py-2 transition duration-200 hover:border-indigo-500
                      hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 mb-2">
-                     <option value={1}>Admin</option>
-                     <option value={2}>Estandar</option>
+                     <option value={1}>ADMIN</option>
+                     <option value={2}>AUDITOR INTERNO</option>
+                     <option value={3}>AUDITOR EXTERNO</option>
                   </select>
                </div>
             </div>
