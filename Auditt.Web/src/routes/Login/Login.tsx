@@ -29,8 +29,11 @@ export const Login = () => {
                <button
                   onClick={handleLogin}
                   className="mt-6 lg:mt-8 cursor-pointer bg-red-500 text-white text-lg md:text-xl lg:text-2xl font-bold px-4 md:px-5 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-full shadow-lg hover:bg-red-700 transition duration-300 w-full max-w-sm text-center">
-                  Iniciar sesión con GOOGLE - {apiUrl}
+                  Iniciar sesión con GOOGLE
                </button>
+               <div className="mt-4 text-gray-300 text-sm  text-center">
+                  <span className="font-mono">{apiUrl}</span>
+               </div>
             </div>
 
             {/* Right Section - Background Image  */}
