@@ -6,6 +6,7 @@ import {
 	GetAssessmentById,
 	GetAssessments,
 	saveAssessmentServices,
+	importAssessmentServices,
 } from "./AssessmentServices";
 import { toast } from "react-toastify";
 import useUserContext from "../../shared/context/useUserContext";
@@ -65,11 +66,42 @@ export const useAssessments = () => {
 		},
 	});
 
+	const importAssessment = useMutation({
+		mutationFn: ({
+			file,
+			institutionId,
+			dataCutId,
+			guideId,
+		}: {
+			file: File;
+			institutionId: number;
+			dataCutId: number;
+			guideId: number;
+		}) => importAssessmentServices(file, institutionId, dataCutId, guideId),
+		onSuccess: (data) => {
+			if (!data.isSuccess) {
+				if (data?.message) {
+					toast.error(data.message);
+				}
+				if (data?.error) {
+					toast.error(data.error.message);
+				}
+			} else {
+				toast.success(data.message);
+				queryAssessments.refetch();
+			}
+		},
+	});
+
 	return {
 		queryAssessments,
 		assessments: queryAssessments.data?.data,
 		createAssessment,
 		deleteAssessment,
+		importAssessment,
+		client,
+		selectedDataCut,
+		selectedGuide,
 	};
 };
 

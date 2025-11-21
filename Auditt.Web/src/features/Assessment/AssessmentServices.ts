@@ -156,3 +156,44 @@ export const saveAssessmentServices = async (
 
 	return response.data;
 };
+
+export const importAssessmentServices = async (
+	file: File,
+	institutionId: number,
+	dataCutId: number,
+	guideId: number
+): Promise<MsgResponse<AssessmentListModel[]>> => {
+	const formData = new FormData();
+	formData.append("file", file);
+
+	const url = "api/assessments/template-import";
+	const params = new URLSearchParams();
+	params.append("institutionId", institutionId.toString());
+	params.append("dataCutId", dataCutId.toString());
+	params.append("guideId", guideId.toString());
+
+	const response = await ApiClient.post<MsgResponse<AssessmentListModel[]>>(
+		url,
+		formData,
+		{
+			params,
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		}
+	);
+
+	if (response.status !== 200 && response.status !== 201) {
+		return {
+			isSuccess: false,
+			message: "Error al importar las valoraciones",
+			isFailure: true,
+			error: {
+				code: response.status.toString(),
+				message: response.statusText,
+			},
+		};
+	}
+
+	return response.data;
+};

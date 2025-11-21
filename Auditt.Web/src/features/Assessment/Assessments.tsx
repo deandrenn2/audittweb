@@ -10,10 +10,12 @@ import { format } from "date-fns";
 import ButtonDelete from "../../shared/components/Buttons/ButtonDelete";
 import { ButtonPlay } from "../../shared/components/Buttons/ButtonPlay";
 import { EmptyData } from "../../shared/components/Navigation/EmptyData";
+import { AssessmentImport } from "./AssessmentImport";
 
 export const Assessments = () => {
     const { queryAssessments, assessments, deleteAssessment } = useAssessments();
     const [isEmptyClient, setIsEmptyClient] = useState(false);
+    const [showImportModal, setShowImportModal] = useState(false);
 
     function handleDelete(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number): void {
         e.preventDefault();
@@ -54,9 +56,17 @@ export const Assessments = () => {
             <div className="bg-white">
                 <div className="p-4 flex flex-col sm:flex-row gap-4 sm:justify-between">
                     <h1 className="text-xl sm:text-2xl font-semibold">Evaluaciones o auditorias</h1>
-                    <Link to={'/Assessments/Create'} title='Crear' className="bg-[#392F5A] hover:bg-indigo-900 text-white px-4 sm:px-6 py-2 rounded-lg font-semibold text-sm sm:text-base text-center">
-                        Realizar evaluaciones
-                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                        <button
+                            onClick={() => setShowImportModal(true)}
+                            className="bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-2 rounded-lg font-semibold text-sm sm:text-base text-center"
+                        >
+                            Importar Valoraciones
+                        </button>
+                        <Link to={'/Assessments/Create'} title='Crear' className="bg-[#392F5A] hover:bg-indigo-900 text-white px-4 sm:px-6 py-2 rounded-lg font-semibold text-sm sm:text-base text-center">
+                            Realizar evaluaciones
+                        </Link>
+                    </div>
                 </div>
                 <div className="flex-1 p-4">
                     <div className="flex flex-col lg:flex-row gap-4 pb-4">
@@ -122,6 +132,26 @@ export const Assessments = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Modal de Importación */}
+            {showImportModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                        <div className="p-6">
+                            <div className="flex justify-between items-center mb-4">
+                                <h2 className="text-xl font-bold">Importar Valoraciones</h2>
+                                <button
+                                    onClick={() => setShowImportModal(false)}
+                                    className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
+                                >
+                                    &times;
+                                </button>
+                            </div>
+                            <AssessmentImport />
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
