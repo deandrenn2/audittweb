@@ -166,17 +166,16 @@ export const importAssessmentServices = async (
 	const formData = new FormData();
 	formData.append("file", file);
 
-	const url = "api/assessments/template-import";
-	const params = new URLSearchParams();
-	params.append("institutionId", institutionId.toString());
-	params.append("dataCutId", dataCutId.toString());
-	params.append("guideId", guideId.toString());
+	const url = "api/assessments/import";
+
+	formData.append("institutionId", institutionId.toString());
+	formData.append("dataCutId", dataCutId.toString());
+	formData.append("guideId", guideId.toString());
 
 	const response = await ApiClient.post<MsgResponse<AssessmentListModel[]>>(
 		url,
 		formData,
 		{
-			params,
 			headers: {
 				"Content-Type": "multipart/form-data",
 			},
