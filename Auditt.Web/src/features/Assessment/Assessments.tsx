@@ -11,6 +11,8 @@ import ButtonDelete from "../../shared/components/Buttons/ButtonDelete";
 import { ButtonPlay } from "../../shared/components/Buttons/ButtonPlay";
 import { EmptyData } from "../../shared/components/Navigation/EmptyData";
 import { AssessmentImport } from "./AssessmentImport";
+import OffCanvas from "../../shared/components/OffCanvas/Index";
+import { Direction } from "../../shared/components/OffCanvas/Models";
 
 export const Assessments = () => {
     const { queryAssessments, assessments, deleteAssessment } = useAssessments();
@@ -134,24 +136,11 @@ export const Assessments = () => {
             </div>
 
             {/* Modal de Importación */}
-            {showImportModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                        <div className="p-6">
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-xl font-bold">Importar Valoraciones</h2>
-                                <button
-                                    onClick={() => setShowImportModal(false)}
-                                    className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
-                                >
-                                    &times;
-                                </button>
-                            </div>
-                            <AssessmentImport />
-                        </div>
-                    </div>
-                </div>
-            )}
+
+            <OffCanvas titlePrincipal="Importar Valoraciones" position={Direction.Right} visible={showImportModal} xClose={() => setShowImportModal(false)}>
+                <AssessmentImport />
+            </OffCanvas>
+
         </>
     );
 }
