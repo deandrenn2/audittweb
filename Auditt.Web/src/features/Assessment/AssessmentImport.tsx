@@ -91,7 +91,7 @@ export const AssessmentImport = () => {
     return (
         <div className="space-y-4">
             <div>
-                <h3 className="text-lg font-semibold mb-2">Importar Valoraciones desde Excel</h3>
+                <h3 className="text-lg font-semibold mb-2">Importar Evaluaciones desde Excel</h3>
                 <p className="text-gray-600 mb-4">
                     Descarga la plantilla, complétala con los datos de las valoraciones, luego súbela para importar.
                 </p>

@@ -63,7 +63,7 @@ export const Assessments = () => {
                             onClick={() => setShowImportModal(true)}
                             className="bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-2 rounded-lg font-semibold text-sm sm:text-base text-center"
                         >
-                            Importar Valoraciones
+                            Importar Evaluaciones
                         </button>
                         <Link to={'/Assessments/Create'} title='Crear' className="bg-[#392F5A] hover:bg-indigo-900 text-white px-4 sm:px-6 py-2 rounded-lg font-semibold text-sm sm:text-base text-center">
                             Realizar evaluaciones
@@ -137,7 +137,7 @@ export const Assessments = () => {
 
             {/* Modal de Importación */}
 
-            <OffCanvas titlePrincipal="Importar Valoraciones" position={Direction.Right} visible={showImportModal} xClose={() => setShowImportModal(false)}>
+            <OffCanvas titlePrincipal="Importar Evaluaciones" position={Direction.Right} visible={showImportModal} xClose={() => setShowImportModal(false)}>
                 <AssessmentImport />
             </OffCanvas>
 
