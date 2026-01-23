@@ -39,7 +39,7 @@ export const Home = () => {
 
                   {/* Video Mockup SVG */}
                   <div className="bg-gray-100 rounded-lg p-8 flex items-center justify-center">
-                     <iframe className="aspect-video" src="https://www.youtube.com/embed/cisFJleM_AI?si=r4D61DtTeULuKcWs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                     <iframe id="odysee-iframe" className="w-full aspect-video" src="https://odysee.com/%24/embed/MEDIC-AUDIT---ADMIN%3A4?r=6D711XsaeZGJcxXQo34NpiE85Ff3UyUY" allowFullScreen></iframe>
                   </div>
                </div>
             </div>
@@ -63,7 +63,7 @@ export const Home = () => {
                </ul>
                {/* Video Mockup SVG */}
                <div className="bg-gray-100 rounded-lg p-8 flex items-center justify-center mb-6 ">
-                  <iframe className="aspect-video" src="https://www.youtube.com/embed/W4BxznIw7b0?si=r4D61DtTeULuKcWs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                  <iframe id="odysee-iframe" className="w-full aspect-video" src="https://odysee.com/%24/embed/Medic-Audit---Auditor-Interno%3Ab?r=6D711XsaeZGJcxXQo34NpiE85Ff3UyUY" allowFullScreen></iframe>
                </div>
 
                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
@@ -106,9 +106,9 @@ export const Home = () => {
                   <li>Acceso a datos de clientes e instituciones asociadas</li>
                </ul>
                {/* Video Mockup SVG */}
-               {/* <div className="bg-gray-100 rounded-lg p-8 flex items-center justify-center mb-6 ">
-                  <iframe className="aspect-video" src="https://www.youtube.com/embed/W4BxznIw7b0?si=r4D61DtTeULuKcWs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-               </div> */}
+               <div className="bg-gray-100 rounded-lg p-8 flex items-center justify-center mb-6 ">
+                  <iframe id="odysee-iframe" className="w-full aspect-video" src="https://odysee.com/%24/embed/Medic-Audit---Auditor-Externo%3Ae?r=6D711XsaeZGJcxXQo34NpiE85Ff3UyUY" allowFullScreen></iframe>
+               </div>
 
                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                   <h3 className="font-semibold text-yellow-800 mb-2">¿Necesitas más información?</h3>
@@ -147,7 +147,10 @@ export const Home = () => {
             </h1>
 
             {renderWelcomeContent()}
-            <DashboradStatistcs />
+            {
+               isAdmin(user) &&
+               <DashboradStatistcs />
+            }
          </div>
 
       </div>
